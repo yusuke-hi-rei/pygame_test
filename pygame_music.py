@@ -19,7 +19,9 @@ def main():
     font = pygame.font.Font(None, 40)
 
     try:
+        # BGMを読み込む
         pygame.mixer_music.load("pygame_bgm.ogg")
+        # SEを読み込む
         se = pygame.mixer.Sound("pygame_se.ogg")
     except:
         print("oggファイルが見当たらないか、オーディオ機器が接続されていません")
@@ -36,15 +38,21 @@ def main():
 
         # リストkeyに全てのキー状態を代入
         key = pygame.key.get_pressed()
+        # 「P」キー
         if key[pygame.K_p] == 1:
+            # 再生中かどうか
             if pygame.mixer_music.get_busy() == False:
+                # BGM再生（-1：ループ再生、１~ｎ：１＋（１~ｎ）回再生、）
                 pygame.mixer_music.play(1)
-
+        # 「S」キー
         if key[pygame.K_s] == 1:
+            # 再生中かどうか
             if pygame.mixer_music.get_busy() == True:
+                # BGM停止
                 pygame.mixer_music.stop()
-
+        # 「SPACE」キー
         if key[pygame.K_SPACE] == 1:
+            # SE再生
             se.play()
 
         pos = pygame.mixer_music.get_pos()
